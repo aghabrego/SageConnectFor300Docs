@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proceso de instalación — Sage Connect for 300</title>
   <meta name="description" content="Asistente de instalación paso a paso de Sage Connect for 300.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="container">
-      <a href="../index.html" class="logo">
-        📘 Sage Connect for 300
-        <span class="badge">v1.0.0</span>
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">SC</span>
+        <span class="brand-name">Sage Connect for 300</span>
+        <span class="brand-tag">Manual técnico · v1.0</span>
       </a>
       <nav class="site-nav">
-        <a href="../index.html">Inicio</a>
+        <a href="../index.html">Índice</a>
         <a href="instalacion.html" class="active">Instalación</a>
         <a href="acceso.html">Acceso</a>
         <a href="configuracion.html">Configuración</a>
@@ -29,66 +32,79 @@
   <main>
     <div class="container">
 
-      <h1>🚀 Proceso de instalación</h1>
-      <p>
-        El instalador guía al usuario a través de <strong>seis pantallas</strong> para completar la
-        instalación de Sage Connect for 300. A continuación se describe cada paso.
-      </p>
+      <div class="chapter-head">
+        <div class="crumb">Capítulo 01 · Instalación</div>
+        <h1>El asistente de instalación</h1>
+        <p class="dek">
+          El instalador guía al usuario a través de seis pantallas para completar
+          la instalación. Cada decisión que tomes aquí puede modificarse después,
+          salvo la activación de licencia.
+        </p>
+      </div>
 
-      <h2>1. Selección de la carpeta de destino</h2>
+      <h2><span class="num">§ 01</span> Carpeta de destino</h2>
       <p>
-        El primer paso consiste en elegir la carpeta donde se instalará Sage Connect for 300.
-        Por defecto el instalador propone:
+        Lo primero es elegir dónde vivirá la aplicación. Por defecto el instalador
+        propone la siguiente ruta:
       </p>
       <pre><code>C:\Program Files (x86)\SageConnectFor300</code></pre>
       <p>
-        Puede modificarse usando el botón <strong>Examinar…</strong>. El asistente también informa
-        que se requieren al menos <strong>390.8 MB</strong> de espacio libre en disco.
+        Puedes cambiarla con el botón <strong>Examinar…</strong>. El asistente
+        también informa que se requieren al menos <strong>390.8 MB</strong> de
+        espacio libre en disco.
       </p>
       <figure>
         <img src="../assets/images/001.png" alt="Selección de la carpeta de destino">
-        <figcaption>Pantalla 1 · Selección de la carpeta de destino</figcaption>
+        <figcaption><strong>Pantalla 1 de 6</strong> · Selección de la carpeta de destino.</figcaption>
       </figure>
 
-      <h2>2. Activación de licencia</h2>
+      <h2><span class="num">§ 02</span> Activación de licencia</h2>
       <p>
-        En esta pantalla se solicita el <strong>número de serie</strong> provisto con la licencia
-        de Sage Connect for 300 (formato <code>SN-XXXXXXXXXXXXX-XXXXX</code>).
+        A continuación se solicita el número de serie provisto con la licencia
+        de Sage Connect for 300. El formato esperado es <code>SN-XXXXXXXXXXXXX-XXXXX</code>.
       </p>
-      <blockquote class="warn">
-        ⚠️ <strong>Importante:</strong> El número de serie se valida en línea, por lo que es
-        indispensable contar con conexión a Internet antes de continuar.
-      </blockquote>
+      <div class="note warn">
+        <strong>Importante.</strong> El número de serie se valida en línea, por
+        lo que es indispensable contar con conexión a Internet antes de continuar.
+        Si la validación falla, el instalador abortará y no creará los accesos
+        directos.
+      </div>
       <figure>
         <img src="../assets/images/002.png" alt="Activación de licencia">
-        <figcaption>Pantalla 2 · Activación de licencia</figcaption>
+        <figcaption><strong>Pantalla 2 de 6</strong> · Activación de licencia.</figcaption>
       </figure>
 
-      <h2>3. Carpeta del menú Inicio</h2>
+      <h2><span class="num">§ 03</span> Carpeta del menú Inicio</h2>
       <p>
-        Permite definir la carpeta del <strong>Menú Inicio</strong> donde se crearán los accesos
-        directos del programa. Por defecto se propone:
+        Aquí defines la carpeta del <strong>Menú Inicio</strong> donde aparecerán
+        los accesos directos del programa. El valor por defecto es razonable
+        para la mayoría de los casos.
       </p>
       <pre><code>SageConnect for 300</code></pre>
-      <p>Puede personalizarse mediante el botón <strong>Examinar…</strong>.</p>
       <figure>
         <img src="../assets/images/003.png" alt="Selección de la carpeta del menú Inicio">
-        <figcaption>Pantalla 3 · Selección de la carpeta del menú Inicio</figcaption>
+        <figcaption><strong>Pantalla 3 de 6</strong> · Carpeta del menú Inicio.</figcaption>
       </figure>
 
-      <h2>4. Tareas adicionales</h2>
-      <p>Permite configurar dos acciones complementarias durante la instalación:</p>
+      <h2><span class="num">§ 04</span> Tareas adicionales</h2>
+      <p>
+        El instalador ofrece dos acciones complementarias. La primera suele
+        dejarse activa; la segunda depende de cómo se use el equipo.
+      </p>
       <ul>
-        <li>✅ <strong>Crear acceso directo al Manager en el escritorio</strong> (activado por defecto)</li>
-        <li>⬜ <strong>Iniciar Manager automáticamente al iniciar Windows</strong> (opcional)</li>
+        <li><strong>Crear acceso directo al Manager en el escritorio</strong> — activado por defecto.</li>
+        <li><strong>Iniciar Manager automáticamente al iniciar Windows</strong> — opcional, útil en servidores.</li>
       </ul>
       <figure>
-        <img src="../assets/images/004.png" alt="Selección de las tareas adicionales">
-        <figcaption>Pantalla 4 · Tareas adicionales</figcaption>
+        <img src="../assets/images/004.png" alt="Tareas adicionales">
+        <figcaption><strong>Pantalla 4 de 6</strong> · Tareas adicionales.</figcaption>
       </figure>
 
-      <h2>5. Listo para instalar</h2>
-      <p>Pantalla de resumen con toda la configuración previa:</p>
+      <h2><span class="num">§ 05</span> Listo para instalar</h2>
+      <p>
+        Una pantalla de resumen reúne toda la configuración previa. Es el último
+        momento para volver atrás y modificar algo.
+      </p>
 
       <table>
         <thead>
@@ -97,40 +113,42 @@
         <tbody>
           <tr><td>Carpeta de destino</td><td><code>C:\Program Files (x86)\SageConnectFor300</code></td></tr>
           <tr><td>Carpeta del menú Inicio</td><td><code>SageConnect for 300</code></td></tr>
-          <tr><td>Tareas adicionales</td><td>Crear acceso directo al Manager en el escritorio</td></tr>
+          <tr><td>Tareas adicionales</td><td>Crear acceso directo en el escritorio</td></tr>
         </tbody>
       </table>
 
-      <p>Al hacer clic en <strong>Instalar</strong> comienza la copia de archivos al equipo.</p>
-      <figure>
-        <img src="../assets/images/005.png" alt="Listo para instalar">
-        <figcaption>Pantalla 5 · Listo para instalar</figcaption>
-      </figure>
-
-      <h2>6. Instalación completada</h2>
       <p>
-        Pantalla final que confirma que <strong>SageConnect for 300</strong> se instaló correctamente.
-        Puede ejecutarse la aplicación mediante los accesos directos creados. El botón
-        <strong>Finalizar</strong> cierra el asistente.
+        Al pulsar <strong>Instalar</strong> comienza la copia de archivos. No
+        requiere interacción adicional hasta la pantalla final.
       </p>
       <figure>
-        <img src="../assets/images/006.png" alt="Completando la instalación">
-        <figcaption>Pantalla 6 · Instalación completada</figcaption>
+        <img src="../assets/images/005.png" alt="Listo para instalar">
+        <figcaption><strong>Pantalla 5 de 6</strong> · Resumen listo para instalar.</figcaption>
       </figure>
 
-      <blockquote class="info">
-        💡 <strong>Siguiente paso:</strong> Continúa con
-        <a href="acceso.html">Acceso a la aplicación</a> para abrir el Manager por primera vez.
-      </blockquote>
+      <h2><span class="num">§ 06</span> Instalación completada</h2>
+      <p>
+        La pantalla final confirma que <strong>SageConnect for 300</strong> se
+        instaló correctamente. El botón <strong>Finalizar</strong> cierra el
+        asistente.
+      </p>
+      <figure>
+        <img src="../assets/images/006.png" alt="Instalación completada">
+        <figcaption><strong>Pantalla 6 de 6</strong> · Instalación completada.</figcaption>
+      </figure>
+
+      <div class="note tip">
+        <strong>Siguiente paso.</strong> Abre el Manager desde el menú Inicio
+        y sigue con el <a href="acceso.html">capítulo de acceso a la aplicación</a>.
+      </div>
 
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Documentación de <strong>Sage Connect for 300</strong> · ACI ·
-        <a href="../index.html">← Volver al inicio</a>
-      </p>
+      <a href="../index.html" class="colophon">← Volver al índice</a>
+      <span>Sage Connect for 300 — ACI</span>
     </div>
   </footer>
 

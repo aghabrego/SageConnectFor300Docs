@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carga de catálogos — Sage Connect for 300</title>
   <meta name="description" content="Importación del Plan de Cuentas GL y Account Sets AP/AR desde Sage 300.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="container">
-      <a href="../index.html" class="logo">
-        📘 Sage Connect for 300
-        <span class="badge">v1.0.0</span>
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">SC</span>
+        <span class="brand-name">Sage Connect for 300</span>
+        <span class="brand-tag">Manual técnico · v1.0</span>
       </a>
       <nav class="site-nav">
-        <a href="../index.html">Inicio</a>
+        <a href="../index.html">Índice</a>
         <a href="instalacion.html">Instalación</a>
         <a href="acceso.html">Acceso</a>
         <a href="configuracion.html">Configuración</a>
@@ -29,89 +32,108 @@
   <main>
     <div class="container">
 
-      <h1>📂 Carga de catálogos</h1>
+      <div class="chapter-head">
+        <div class="crumb">Capítulo 04 · Catálogos</div>
+        <h1>Cuentas GL y conjuntos AP/AR</h1>
+        <p class="dek">
+          La sección <strong>Cuentas</strong> permite importar manualmente los
+          catálogos contables desde Sage 300. Es un paso necesario antes de
+          sincronizar cualquier documento financiero.
+        </p>
+      </div>
+
+      <h2><span class="num">§ 01</span> Cuentas GL</h2>
       <p>
-        La sección <strong>Cuentas</strong> permite cargar manualmente los catálogos desde
-        Sage 300 hacia la base de datos local. Se divide en dos tareas independientes.
+        El primer catálogo a cargar es el <strong>plan de cuentas</strong>.
+        Desde la pantalla principal de Cuentas, pulsa el botón
+        <strong>Importar</strong>.
       </p>
 
-      <h2>Cuentas GL</h2>
-      <p>
-        Permite importar el <strong>plan de cuentas GL</strong> desde Sage 300 mediante el
-        botón <strong>Importar</strong>.
-      </p>
       <figure>
         <img src="../assets/images/011.png" alt="Pantalla de Cuentas">
-        <figcaption>Captura 1 · Pantalla de Cuentas con carga de catálogos</figcaption>
+        <figcaption><strong>Captura 11</strong> · Pantalla de Cuentas con carga de catálogos.</figcaption>
       </figure>
 
       <p>
-        Al ejecutar la importación se abre el asistente <strong>Importar Plan de Cuentas GL</strong>
-        (Paso 1 de 2), donde se selecciona el archivo Excel exportado desde Sage 50 con las cuentas
-        contables. Opciones disponibles:
+        Se abre el asistente <strong>Importar Plan de Cuentas GL</strong>
+        (Paso 1 de 2), donde se selecciona el archivo Excel exportado desde
+        Sage 50. Las opciones disponibles son:
       </p>
-      <ul>
-        <li>☑️ <strong>Solo activas</strong> (activado por defecto)</li>
-        <li>☑️ <strong>Crear nuevas</strong> (activado por defecto)</li>
-        <li>� <strong>Actualizar existentes</strong></li>
-        <li>⬜ <strong>Log detallado</strong></li>
-        <li><strong>Paralelas:</strong> cantidad configurable (por defecto <code>8</code>)</li>
-      </ul>
-      <p>
-        Tras seleccionar el archivo, se pulsa <strong>Importar</strong> para iniciar el proceso.
-        La barra de progreso y el log muestran el avance en tiempo real.
-      </p>
+
+      <table>
+        <thead>
+          <tr><th>Opción</th><th>Descripción</th><th>Por defecto</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Solo activas</td><td>Ignora cuentas marcadas como inactivas</td><td>Activado</td></tr>
+          <tr><td>Crear nuevas</td><td>Inserta cuentas que no existan localmente</td><td>Activado</td></tr>
+          <tr><td>Actualizar existentes</td><td>Sobrescribe cuentas ya presentes</td><td>Desactivado</td></tr>
+          <tr><td>Log detallado</td><td>Genera un log línea por línea</td><td>Desactivado</td></tr>
+          <tr><td>Paralelas</td><td>Hilos de procesamiento simultáneo</td><td><code>8</code></td></tr>
+        </tbody>
+      </table>
+
+      <div class="note tip">
+        <strong>Sugerencia.</strong> En la primera carga deja
+        <em>Actualizar existentes</em> desactivado: así evitarás pisar datos
+        si exportaste el archivo con un filtro distinto al esperado.
+      </div>
+
       <figure>
-        <img src="../assets/images/012.png" alt="Importar Plan de Cuentas GL - Paso 1">
-        <figcaption>Captura 2 · Importar Plan de Cuentas GL (Paso 1)</figcaption>
+        <img src="../assets/images/012.png" alt="Importar Plan de Cuentas GL">
+        <figcaption><strong>Captura 12</strong> · Asistente de importación GL (Paso 1).</figcaption>
       </figure>
 
-      <h2>Conjuntos de Cuentas AP / AR</h2>
+      <h2><span class="num">§ 02</span> Conjuntos de Cuentas AP / AR</h2>
       <p>
-        Permite importar los <strong>Account Sets de AP y AR</strong> desde Sage 300 con el
-        botón <strong>Importar</strong>. Esto asigna las cuentas GL de control para clientes
-        (AR) y proveedores (AP).
+        Los <strong>Account Sets</strong> asocian cuentas GL de control a
+        clientes (AR) y proveedores (AP). Sin ellos, la sincronización de
+        documentos no sabrá qué cuenta imputar.
       </p>
+
       <figure>
         <img src="../assets/images/013.png" alt="Conjuntos AP/AR">
-        <figcaption>Captura 3 · Pantalla de Cuentas - Conjuntos AP/AR</figcaption>
+        <figcaption><strong>Captura 13</strong> · Pantalla de Cuentas — Conjuntos AP/AR.</figcaption>
       </figure>
 
-      <p>El asistente muestra dos pestañas:</p>
+      <p>
+        El asistente presenta dos pestañas con los campos esperados:
+      </p>
       <ul>
         <li>
-          <strong>A/P — Conjuntos de Cuentas</strong>
-          (<code>ACCTSETID · TEXTDESC · PAYACCNT · DISACCNT · PREPACCNT · CURNCOD · ACTIVESW</code>)
+          <strong>A/P — Conjuntos de Cuentas</strong>:
+          <code>ACCTSETID · TEXTDESC · PAYACCNT · DISACCNT · PREPACCNT · CURNCOD · ACTIVESW</code>
         </li>
         <li>
-          <strong>A/R — Conjuntos de Cuentas</strong>
-          (<code>ACCTSETID · TEXTDESC · RECACCNT · DISACCNT · PREPACCNT · WRTOFFACC · CURNCOD · ACTIVESW</code>)
+          <strong>A/R — Conjuntos de Cuentas</strong>:
+          <code>ACCTSETID · TEXTDESC · RECACCNT · DISACCNT · PREPACCNT · WRTOFFACC · CURNCOD · ACTIVESW</code>
         </li>
       </ul>
+
       <p>
-        Cada pestaña permite seleccionar el archivo Excel correspondiente, elegir entre
-        <em>Solo activos</em>, <em>Crear nuevos</em> o <em>Actualizar existentes</em>, y ejecutar
-        la importación.
+        Cada pestaña permite cargar su Excel correspondiente con las mismas
+        tres opciones de la sección anterior: <em>Solo activos</em>,
+        <em>Crear nuevos</em> y <em>Actualizar existentes</em>.
       </p>
+
       <figure>
-        <img src="../assets/images/014.png" alt="Importar Conjuntos de Cuentas AP - Paso 2">
-        <figcaption>Captura 4 · Importar Conjuntos de Cuentas AP (Paso 2)</figcaption>
+        <img src="../assets/images/014.png" alt="Importar Conjuntos de Cuentas AP">
+        <figcaption><strong>Captura 14</strong> · Importar Conjuntos de Cuentas AP (Paso 2).</figcaption>
       </figure>
 
-      <blockquote class="info">
-        💡 <strong>Siguiente paso:</strong> Continúa con
-        <a href="avanzada.html">Configuración avanzada</a> para completar Sage 300, base de datos
-        y módulos.
-      </blockquote>
+      <div class="note tip">
+        <strong>Siguiente paso.</strong> Con los catálogos cargados, ya puedes
+        abordar la <a href="avanzada.html">configuración avanzada</a>:
+        Sage 300, base de datos y módulos.
+      </div>
 
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Documentación de <strong>Sage Connect for 300</strong> · ACI ·
-        <a href="../index.html">← Volver al inicio</a>
-      </p>
+      <a href="../index.html" class="colophon">← Volver al índice</a>
+      <span>Sage Connect for 300 — ACI</span>
     </div>
   </footer>
 

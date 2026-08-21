@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sage Connect for 300 — Guía de Instalación</title>
-  <meta name="description" content="Documentación paso a paso para la instalación y configuración de Sage Connect for 300, el conector de sincronización entre Sage 300 ERP y la base de datos local.">
+  <title>Sage Connect for 300 — Manual de instalación</title>
+  <meta name="description" content="Guía paso a paso para la instalación y configuración de Sage Connect for 300, el conector de sincronización entre Sage 300 ERP y la base de datos local.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- ========== HEADER ========== -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo">
-        📘 Sage Connect for 300
-        <span class="badge">v1.0.0</span>
+      <a href="index.html" class="brand">
+        <span class="brand-mark">SC</span>
+        <span class="brand-name">Sage Connect for 300</span>
+        <span class="brand-tag">Manual técnico · v1.0</span>
       </a>
       <nav class="site-nav">
-        <a href="index.html" class="active">Inicio</a>
+        <a href="index.html" class="active">Índice</a>
         <a href="docs/instalacion.html">Instalación</a>
         <a href="docs/acceso.html">Acceso</a>
         <a href="docs/configuracion.html">Configuración</a>
@@ -27,106 +29,163 @@
     </div>
   </header>
 
-  <!-- ========== HERO ========== -->
-  <section class="hero">
-    <div class="container">
-      <h1>Sage Connect for 300</h1>
-      <p class="subtitle">Conector de sincronización entre Sage 300 ERP y la base de datos local</p>
-      <div class="meta">
-        <span>🏷️ Versión 1.0.0</span>
-        <span>� Windows</span>
-        <span>💾 390.8 MB</span>
-        <span>🏢 ACI</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== MAIN ========== -->
   <main>
     <div class="container">
 
-      <h2>📚 Documentación completa</h2>
-      <p>
-        Esta guía describe el proceso completo de instalación, configuración y puesta en marcha de
-        <strong>Sage Connect for 300</strong>. Sigue cada sección en orden para una instalación exitosa.
-      </p>
+      <section class="hero">
+        <div class="eyebrow">Documentación técnica · 2026</div>
+        <h1>Instalación paso a paso de <em>Sage Connect</em></h1>
+        <p class="dek">
+          Una guía completa para desplegar el conector de sincronización entre
+          Sage 300 ERP y la base de datos local. Desde el asistente de instalación
+          hasta la primera sincronización manual.
+        </p>
+        <dl class="meta">
+          <div>
+            <dt>Producto</dt>
+            <dd>Sage Connect for 300</dd>
+          </div>
+          <div>
+            <dt>Versión</dt>
+            <dd>1.0.0</dd>
+          </div>
+          <div>
+            <dt>Plataforma</dt>
+            <dd>Windows</dd>
+          </div>
+          <div>
+            <dt>Espacio</dt>
+            <dd>390.8 MB</dd>
+          </div>
+          <div>
+            <dt>Editor</dt>
+            <dd>ACI</dd>
+          </div>
+        </dl>
+      </section>
 
-      <div class="card-grid">
+      <section style="margin-top: 3rem;">
+        <h2><span class="num">§ 01</span> Contenido de la guía</h2>
+        <p>
+          El proceso completo se divide en cinco capítulos. Recomendamos seguirlos
+          en orden: cada etapa prepara el terreno para la siguiente.
+        </p>
 
-        <a href="docs/instalacion.html" class="card">
-          <div class="icon">1</div>
-          <h3>Proceso de instalación</h3>
-          <p>Asistente paso a paso: carpeta de destino, licencia, accesos directos y finalización.</p>
-          <span class="step">6 capturas →</span>
-        </a>
+        <ol class="index-list">
 
-        <a href="docs/acceso.html" class="card">
-          <div class="icon">2</div>
-          <h3>Acceso a la aplicación</h3>
-          <p>Cómo abrir el Manager desde el menú Inicio y autenticarse en la pantalla de login.</p>
-          <span class="step">2 capturas →</span>
-        </a>
+          <li>
+            <a href="docs/instalacion.html">
+              <span class="step-num">01</span>
+              <span>
+                <span class="step-title">Proceso de instalación</span>
+                <span class="step-desc">Asistente paso a paso: carpeta de destino, licencia, accesos directos y finalización.</span>
+              </span>
+              <span class="step-arrow">→</span>
+            </a>
+          </li>
 
-        <a href="docs/configuracion.html" class="card">
-          <div class="icon">3</div>
-          <h3>Configuración inicial</h3>
-          <p>Escritorio principal y configuración de intervalos de sincronización automática.</p>
-          <span class="step">2 capturas →</span>
-        </a>
+          <li>
+            <a href="docs/acceso.html">
+              <span class="step-num">02</span>
+              <span>
+                <span class="step-title">Acceso a la aplicación</span>
+                <span class="step-desc">Cómo abrir el Manager desde el menú Inicio y autenticarse en la pantalla de login.</span>
+              </span>
+              <span class="step-arrow">→</span>
+            </a>
+          </li>
 
-        <a href="docs/catalogos.html" class="card">
-          <div class="icon">4</div>
-          <h3>Carga de catálogos</h3>
-          <p>Importación del Plan de Cuentas GL y Conjuntos de Cuentas AP/AR desde Sage 300.</p>
-          <span class="step">4 capturas →</span>
-        </a>
+          <li>
+            <a href="docs/configuracion.html">
+              <span class="step-num">03</span>
+              <span>
+                <span class="step-title">Configuración inicial</span>
+                <span class="step-desc">Escritorio principal e intervalos de sincronización automática.</span>
+              </span>
+              <span class="step-arrow">→</span>
+            </a>
+          </li>
 
-        <a href="docs/avanzada.html" class="card">
-          <div class="icon">5</div>
-          <h3>Configuración avanzada</h3>
-          <p>Sage 300, base de datos, módulos de sincronización e importación S50 → S300.</p>
-          <span class="step">4 capturas →</span>
-        </a>
+          <li>
+            <a href="docs/catalogos.html">
+              <span class="step-num">04</span>
+              <span>
+                <span class="step-title">Carga de catálogos</span>
+                <span class="step-desc">Plan de Cuentas GL y Account Sets AP/AR desde Sage 300.</span>
+              </span>
+              <span class="step-arrow">→</span>
+            </a>
+          </li>
 
-      </div>
+          <li>
+            <a href="docs/avanzada.html">
+              <span class="step-num">05</span>
+              <span>
+                <span class="step-title">Configuración avanzada</span>
+                <span class="step-desc">Sage 300, base de datos, módulos de sincronización e importación S50 → S300.</span>
+              </span>
+              <span class="step-arrow">→</span>
+            </a>
+          </li>
 
-      <h2>✅ Lista de verificación post-instalación</h2>
-      <p>Comprueba cada paso antes de poner en marcha el conector:</p>
+        </ol>
+      </section>
 
-      <ul class="checklist">
-        <li>Instalación completada sin errores</li>
-        <li>Acceso directo al Manager disponible</li>
-        <li>Inicio de sesión exitoso</li>
-        <li>Configuración de proceso (intervalos y reintentos)</li>
-        <li>Importación del Plan de Cuentas GL</li>
-        <li>Importación de Conjuntos de Cuentas AP/AR</li>
-        <li>Configuración de Sage 300 (URL, credenciales, defaults)</li>
-        <li>Configuración de Base de datos (cadena y esquema inicializado)</li>
-        <li>Selección de módulos de sincronización</li>
-        <li>Configuración de Importación S50</li>
-      </ul>
+      <section>
+        <h2><span class="num">§ 02</span> Antes de empezar</h2>
+        <p>
+          Antes de ejecutar el instalador conviene tener a mano lo siguiente:
+        </p>
 
-      <h2>🧭 Orden recomendado</h2>
-      <ol class="steps">
-        <li><strong>Instalación:</strong> Ejecuta el instalador y completa el asistente.</li>
-        <li><strong>Acceso:</strong> Abre el Manager e inicia sesión.</li>
-        <li><strong>Configuración inicial:</strong> Define los intervalos de sincronización automática.</li>
-        <li><strong>Catálogos:</strong> Importa el Plan de Cuentas GL y los Account Sets AP/AR.</li>
-        <li><strong>Configuración avanzada:</strong> Completa Sage 300, Base de datos, Módulos e Importación S50.</li>
-        <li><strong>¡Listo!</strong> Ejecuta la primera sincronización manual desde el Escritorio.</li>
-      </ol>
+        <div class="note">
+          <strong>Requisitos mínimos.</strong> Windows 10 u 11, ~390 MB libres,
+          permisos de administrador para la instalación, y conexión a Internet
+          estable durante el asistente para validar la licencia.
+        </div>
+
+        <h4>Tiempo estimado</h4>
+        <p>
+          Una instalación limpia, incluyendo la primera sincronización manual,
+          toma entre <strong>20 y 40 minutos</strong> dependiendo del volumen de
+          datos a importar.
+        </p>
+
+        <h4>Si algo falla</h4>
+        <p>
+          Cada capítulo incluye llamadas de atención y sugerencias. Si el
+          proceso se interrumpe, suele ser seguro reiniciarlo desde la
+          sección correspondiente.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="num">§ 03</span> Lista de verificación</h2>
+        <p>
+          Antes de dar por terminada la instalación, comprueba que cada punto
+          quedó resuelto.
+        </p>
+
+        <ul class="checklist">
+          <li>El instalador finalizó sin errores</li>
+          <li>El acceso directo al Manager aparece en el escritorio</li>
+          <li>El inicio de sesión se realiza con éxito</li>
+          <li>Los intervalos de sincronización están definidos</li>
+          <li>El Plan de Cuentas GL se importó correctamente</li>
+          <li>Los Conjuntos AP/AR están cargados</li>
+          <li>Las credenciales de Sage 300 están configuradas</li>
+          <li>La cadena de conexión a la BD prueba correctamente</li>
+          <li>Los módulos de sincronización deseados están seleccionados</li>
+          <li>La importación S50 está habilitada y configurada</li>
+        </ul>
+      </section>
 
     </div>
   </main>
 
-  <!-- ========== FOOTER ========== -->
   <footer class="site-footer">
     <div class="container">
-      <p>
-        Documentación de <strong>Sage Connect for 300</strong> · ACI ·
-        <a href="https://github.com/" target="_blank" rel="noopener">Ver en GitHub</a>
-      </p>
-      <p style="opacity:0.7; font-size:0.8rem;">Sitio generado con GitHub Pages · 2026</p>
+      <span class="colophon">Sage Connect for 300 — Manual técnico · ACI</span>
+      <span>Última revisión · agosto 2026</span>
     </div>
   </footer>
 

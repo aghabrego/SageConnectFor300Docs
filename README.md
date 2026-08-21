@@ -1,6 +1,9 @@
-# 📘 Guía de Instalación — Sage Connect for 300
+# 📘 Manual de Instalación — Sage Connect for 300
 
 Documentación paso a paso del proceso de instalación y configuración inicial de **Sage Connect for 300**, el conector de sincronización entre **Sage 300 ERP** y la base de datos local desarrollado por **ACI**.
+
+> Manual técnico con estilo editorial. Para la versión navegable visita el
+> [sitio en GitHub Pages](https://aghabrego.github.io/SageConnectFor300Docs/).
 
 > **Versión del producto:** 1.0.0
 > **Sistema operativo:** Windows

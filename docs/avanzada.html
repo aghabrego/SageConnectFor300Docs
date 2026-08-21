@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Configuración avanzada — Sage Connect for 300</title>
   <meta name="description" content="Configuración de Sage 300, base de datos, sincronización e importación S50.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="container">
-      <a href="../index.html" class="logo">
-        📘 Sage Connect for 300
-        <span class="badge">v1.0.0</span>
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">SC</span>
+        <span class="brand-name">Sage Connect for 300</span>
+        <span class="brand-tag">Manual técnico · v1.0</span>
       </a>
       <nav class="site-nav">
-        <a href="../index.html">Inicio</a>
+        <a href="../index.html">Índice</a>
         <a href="instalacion.html">Instalación</a>
         <a href="acceso.html">Acceso</a>
         <a href="configuracion.html">Configuración</a>
@@ -29,179 +32,174 @@
   <main>
     <div class="container">
 
-      <h1>🛠️ Configuración avanzada</h1>
-      <p>
-        El bloque <strong>CONFIGURACIÓN</strong> del menú lateral agrupa cuatro pantallas que
-        deben completarse para poner en marcha el conector.
-      </p>
+      <div class="chapter-head">
+        <div class="crumb">Capítulo 05 · Avanzada</div>
+        <h1>Conexiones, módulos e importación S50</h1>
+        <p class="dek">
+          El último capítulo reúne las cuatro pantallas del bloque
+          <strong>CONFIGURACIÓN</strong>. Aquí se decide qué datos viajan
+          entre Sage 300, la base local y Sage 50.
+        </p>
+      </div>
 
-      <h2>1. Configuración — Sage 300</h2>
+      <h2><span class="num">§ 01</span> Sage 300</h2>
       <p>
-        Permite definir las credenciales y el endpoint de la API de <strong>Sage 300 ERP</strong>:
+        Esta pantalla define el endpoint de la API y las credenciales con
+        las que el conector se autentica contra Sage 300.
       </p>
 
       <h3>API</h3>
       <ul>
-        <li><strong>URL base de la API:</strong> <code>http://localhost/Sage300WebApi/v1.0</code></li>
-        <li><strong>Empresa (Company):</strong> <code>BGSDAT</code></li>
-        <li><strong>Código de estructura GL (StructureCode):</strong> <code>IDACC</code></li>
+        <li><strong>URL base:</strong> <code>http://localhost/Sage300WebApi/v1.0</code></li>
+        <li><strong>Empresa:</strong> <code>BGSDAT</code></li>
+        <li><strong>Estructura GL:</strong> <code>IDACC</code></li>
       </ul>
 
       <h3>Credenciales</h3>
       <ul>
         <li><strong>Usuario Sage 300:</strong> <code>ADMIN</code></li>
-        <li><strong>Contraseña Sage 300:</strong> campo oculto (use <em>Mostrar contraseña</em> para revelar)</li>
+        <li><strong>Contraseña:</strong> campo oculto — usa <em>Mostrar contraseña</em> para verificar.</li>
       </ul>
 
       <h3>Defaults para importación S50 → S300</h3>
       <ul>
-        <li><strong>Grupo de cliente AR (CustomerGroup):</strong> <code>SLSUSD</code></li>
-        <li><strong>Grupo de proveedor AP (VendorGroup):</strong> <code>RPRUSD</code></li>
+        <li><strong>CustomerGroup (AR):</strong> <code>SLSUSD</code></li>
+        <li><strong>VendorGroup (AP):</strong> <code>RPRUSD</code></li>
       </ul>
 
       <p>
-        Dispone además del botón <strong>Cambiar contraseña de acceso</strong> para modificar
-        la contraseña del Manager. Use <strong>Guardar</strong> para conservar los cambios.
+        Desde aquí también se accede a <strong>Cambiar contraseña de
+        acceso</strong>, que modifica la contraseña del Manager (no la de
+        Sage 300).
       </p>
+
       <figure>
         <img src="../assets/images/015.png" alt="Configuración - Sage 300">
-        <figcaption>Captura 1 · Configuración — Sage 300</figcaption>
+        <figcaption><strong>Captura 15</strong> · Configuración — Sage 300.</figcaption>
       </figure>
 
-      <h2>2. Configuración — Base de datos</h2>
+      <h2><span class="num">§ 02</span> Base de datos</h2>
       <p>
-        Define la conexión al motor de base de datos donde se almacenan las tablas sincronizadas.
+        Aquí se configura el motor donde vivirán las 76 tablas sincronizadas.
+        Hay dos proveedores disponibles; <strong>SQL Server</strong> es el
+        habitual.
       </p>
 
-      <h3>Proveedor de base de datos</h3>
-      <ul>
-        <li>🔘 <strong>SQL Server</strong> (por defecto)</li>
-        <li>○ <strong>MySQL / MariaDB</strong></li>
-      </ul>
-
-      <h3>SQL Server — cadena de conexión</h3>
+      <h3>Cadena de conexión</h3>
       <pre><code>Server=localhost;Database=SageConnect;Trusted_Connection=True;TrustServerCertificate=True;</code></pre>
 
-      <blockquote class="info">
-        💡 <strong>Sugerencia:</strong> Para autenticación Windows usar
-        <code>Trusted_Connection=True</code>. Para SQL usar
-        <code>User Id=sa;Password=xxxxx;</code>.
-      </blockquote>
+      <div class="note tip">
+        <strong>Autenticación.</strong> Para cuentas Windows usa
+        <code>Trusted_Connection=True</code>. Para autenticación SQL,
+        sustitúyelo por <code>User Id=sa;Password=xxxxx;</code>.
+      </div>
 
-      <h3>Acciones disponibles</h3>
+      <h3>Acciones</h3>
       <ul>
-        <li><strong>Probar conexión</strong> — Verifica que la cadena de conexión sea válida.</li>
-        <li><strong>Inicializar esquema completo (76 tablas)</strong> — Crea todas las tablas necesarias en la base de datos.</li>
-        <li><strong>Guardar</strong> — Persiste los cambios.</li>
+        <li><strong>Probar conexión</strong> — verifica la cadena sin tocar nada.</li>
+        <li><strong>Inicializar esquema completo (76 tablas)</strong> — crea toda la estructura.</li>
+        <li><strong>Guardar</strong> — persiste los cambios.</li>
       </ul>
+
+      <div class="note warn">
+        <strong>Cuidado.</strong> La inicialización del esquema es
+        destructiva si las tablas ya existen con otra estructura. Haz
+        primero una copia de seguridad.
+      </div>
+
       <figure>
         <img src="../assets/images/016.png" alt="Configuración - Base de datos">
-        <figcaption>Captura 2 · Configuración — Base de datos</figcaption>
+        <figcaption><strong>Captura 16</strong> · Configuración — Base de datos.</figcaption>
       </figure>
 
-      <h2>3. Configuración — Sincronización</h2>
+      <h2><span class="num">§ 03</span> Sincronización</h2>
       <p>
-        Permite seleccionar los <strong>módulos de Sage 300</strong> que se exportarán a las
-        tablas de la BD local:
+        Esta pantalla define <strong>qué módulos</strong> de Sage 300 viajan
+        a la base local. Está organizada en tres bloques.
       </p>
 
       <h3>Módulos básicos</h3>
       <ul>
-        <li>⬜ Clientes (AR Customers)</li>
-        <li>⬜ Proveedores (AP Vendors)</li>
-        <li>⬜ Artículos (IC Items) — <em>requiere licencia</em></li>
-        <li>⬜ Órdenes (OE Orders) — <em>requiere licencia</em></li>
-        <li>⬜ Cuentas GL (GL Accounts)</li>
+        <li>Clientes (AR Customers)</li>
+        <li>Proveedores (AP Vendors)</li>
+        <li>Artículos (IC Items) — <em>requiere licencia</em></li>
+        <li>Órdenes (OE Orders) — <em>requiere licencia</em></li>
+        <li>Cuentas GL (GL Accounts)</li>
       </ul>
 
       <h3>AR — Documentos financieros</h3>
       <ul>
-        <li>⬜ Documentos posteados (ARPostedDocuments)</li>
-        <li>⬜ Recibos posteados (ARPostedReceipts)</li>
-        <li>⬜ Pagos (ARPayments)</li>
-        <li>⬜ Lotes de facturas (ARInvoiceBatches)</li>
-        <li>⬜ Lotes de cobros (ARReceiptBatches)</li>
-        <li>⬜ Lotes de reembolsos (ARRefundBatches)</li>
+        <li>Documentos posteados, recibos posteados, pagos</li>
+        <li>Lotes de facturas, cobros y reembolsos</li>
       </ul>
 
       <h3>AP — Documentos financieros</h3>
       <ul>
-        <li>⬜ Documentos posteados (APPostedDocuments)</li>
-        <li>⬜ Lotes de facturas (APInvoiceBatches)</li>
-        <li>⬜ Lotes de pagos (APPaymentBatches)</li>
+        <li>Documentos posteados</li>
+        <li>Lotes de facturas y pagos</li>
       </ul>
 
-      <p>Tras seleccionar los módulos deseados se pulsa <strong>Guardar</strong>.</p>
       <figure>
         <img src="../assets/images/017.png" alt="Configuración - Sincronización">
-        <figcaption>Captura 3 · Configuración — Sincronización</figcaption>
+        <figcaption><strong>Captura 17</strong> · Configuración — Sincronización.</figcaption>
       </figure>
 
-      <h2>4. Configuración — Importación S50</h2>
+      <h2><span class="num">§ 04</span> Importación S50</h2>
       <p>
-        Permite configurar los módulos y la fuente de datos para la importación
-        <strong>Sage 50 → Sage 300</strong>.
+        La última pantalla controla el flujo <strong>Sage 50 → Sage 300</strong>.
+        Primero se habilita el switch maestro, luego se elige la fuente y los
+        módulos a importar.
       </p>
-
-      <h3>Habilitación</h3>
-      <ul>
-        <li>☑️ <strong>Habilitar importación Sage 50 → Sage 300</strong></li>
-      </ul>
 
       <h3>Fuente de datos</h3>
       <ul>
-        <li>○ <strong>Imp — Staging Sage 50</strong> (<code>_Imp</code>)</li>
-        <li>🔘 <strong>Exp — Exportación Sage 50</strong> (<code>_Exp_S50</code>) (seleccionado por defecto)</li>
+        <li><strong>Imp</strong> — staging de Sage 50 (<code>_Imp</code>).</li>
+        <li><strong>Exp</strong> — exportación directa de Sage 50 (<code>_Exp_S50</code>). Es la opción por defecto.</li>
         <li><strong>ID Compañía S50:</strong> <code>1</code></li>
         <li><strong>Separador GL:</strong> <code>-</code></li>
       </ul>
 
       <h3>Módulos a importar</h3>
+
       <h4>Maestros</h4>
       <ul>
-        <li>☑️ Clientes (Customers_Exp)</li>
-        <li>☑️ Proveedores (Vendors_Exp)</li>
-        <li>☑️ Productos (Products_Exp)</li>
-        <li>☑️ Contactos (Contacts_Exp)</li>
-        <li>☑️ Trabajos (Jobs_Exp)</li>
-        <li>⬜ Fases (no disponible en Exp)</li>
-        <li>⬜ Códigos de costo (no disponible en Exp)</li>
-        <li>⬜ Ajuste de inventario (no disponible en Exp)</li>
+        <li>Clientes, proveedores, productos, contactos y trabajos.</li>
+        <li>Fases, códigos de costo y ajuste de inventario no están disponibles en <em>Exp</em>.</li>
       </ul>
 
       <h4>Ventas</h4>
       <ul>
-        <li>☑️ Facturas de venta (SalesInvoice_Header_Exp)</li>
-        <li>☑️ Órdenes de venta (SalesOrder_Header_Exp)</li>
+        <li>Facturas y órdenes de venta.</li>
       </ul>
 
       <h4>Compras</h4>
       <ul>
-        <li>☑️ Facturas de compra (Purchase_Header_Exp)</li>
+        <li>Facturas de compra.</li>
       </ul>
 
       <h4>Financiero</h4>
-      <p><em>(sección visible al hacer scroll)</em></p>
+      <p>
+        Bloque visible al hacer scroll en la pantalla original.
+      </p>
 
-      <p>Pulse <strong>Guardar</strong> para aplicar los cambios.</p>
       <figure>
         <img src="../assets/images/018.png" alt="Configuración - Importación S50">
-        <figcaption>Captura 4 · Configuración — Importación S50</figcaption>
+        <figcaption><strong>Captura 18</strong> · Configuración — Importación S50.</figcaption>
       </figure>
 
-      <blockquote class="info">
-        🎉 <strong>¡Configuración completa!</strong> Vuelve al
-        <a href="../index.html">inicio</a> y ejecuta la primera sincronización manual desde el Escritorio.
-      </blockquote>
+      <div class="note tip">
+        <strong>Listo.</strong> Con todo configurado, vuelve al
+        <a href="../index.html">índice</a> y lanza la primera sincronización
+        manual desde el Escritorio.
+      </div>
 
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Documentación de <strong>Sage Connect for 300</strong> · ACI ·
-        <a href="../index.html">← Volver al inicio</a>
-      </p>
+      <a href="../index.html" class="colophon">← Volver al índice</a>
+      <span>Sage Connect for 300 — ACI</span>
     </div>
   </footer>
 

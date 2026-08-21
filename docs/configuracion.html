@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Configuración inicial — Sage Connect for 300</title>
   <meta name="description" content="Escritorio principal y configuración de proceso de Sage Connect for 300.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="container">
-      <a href="../index.html" class="logo">
-        📘 Sage Connect for 300
-        <span class="badge">v1.0.0</span>
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">SC</span>
+        <span class="brand-name">Sage Connect for 300</span>
+        <span class="brand-tag">Manual técnico · v1.0</span>
       </a>
       <nav class="site-nav">
-        <a href="../index.html">Inicio</a>
+        <a href="../index.html">Índice</a>
         <a href="instalacion.html">Instalación</a>
         <a href="acceso.html">Acceso</a>
         <a href="configuracion.html" class="active">Configuración</a>
@@ -29,77 +32,87 @@
   <main>
     <div class="container">
 
-      <h1>⚙️ Configuración inicial</h1>
+      <div class="chapter-head">
+        <div class="crumb">Capítulo 03 · Configuración</div>
+        <h1>El escritorio y los intervalos</h1>
+        <p class="dek">
+          Antes de cargar catálogos conviene familiarizarse con el escritorio
+          y entender cómo se controla la sincronización automática.
+        </p>
+      </div>
+
+      <h2><span class="num">§ 01</span> Escritorio</h2>
       <p>
-        Las dos pantallas principales para comenzar a trabajar con Sage Connect for 300.
+        El <strong>Escritorio</strong> es la pantalla de bienvenida del Manager.
+        Reúne en un solo vistazo el estado del servicio y los accesos rápidos
+        a las dos operaciones principales.
       </p>
 
-      <h2>Escritorio</h2>
-      <p>
-        El <strong>Escritorio</strong> muestra el estado general del conector y permite la
-        ejecución manual de procesos. Contiene tres secciones principales:
-      </p>
+      <h4>Bloques visibles</h4>
       <ul>
-        <li>
-          <strong>SageConnect for 300</strong> — Cabecera con el nombre del conector y la
-          descripción <em>"Conector de sincronización para Sage 300 ERP · ACI"</em>.
-        </li>
-        <li>
-          <strong>Estado del servicio</strong> — Servicio Windows en ejecución, fecha de la
-          última sincronización S300 y de la última importación S50.
-        </li>
-        <li>
-          <strong>Ejecución manual</strong> — Botones para ejecutar manualmente la
-          <em>Sincronización S300</em> (exporta módulos de Sage 300 hacia la BD local) y la
-          <em>Importación S50 → S300</em> (importa datos de Sage 50 hacia Sage 300).
-        </li>
-        <li>
-          <strong>Actividad reciente</strong> — Panel que muestra los logs recientes del sistema.
-        </li>
+        <li><strong>SageConnect for 300</strong> — cabecera con el nombre del conector.</li>
+        <li><strong>Estado del servicio</strong> — última sincronización S300 y última importación S50.</li>
+        <li><strong>Ejecución manual</strong> — botones para forzar sincronización o importación.</li>
+        <li><strong>Actividad reciente</strong> — log de las últimas operaciones.</li>
       </ul>
+
       <figure>
         <img src="../assets/images/009.png" alt="Escritorio principal">
-        <figcaption>Captura 1 · Escritorio principal de SageConnect for 300</figcaption>
+        <figcaption><strong>Captura 9</strong> · Escritorio principal de SageConnect for 300.</figcaption>
       </figure>
 
-      <h2>Proceso</h2>
+      <h2><span class="num">§ 02</span> Proceso</h2>
       <p>
-        La sección <strong>Proceso</strong> permite configurar los intervalos y controlar
-        manualmente los procesos de sincronización:
+        La sección <strong>Proceso</strong> controla los intervalos y permite
+        lanzar ejecuciones puntuales. Hay dos bloques diferenciados.
       </p>
 
       <h3>Sincronización automática — Sage 300</h3>
+      <p>
+        Es la sincronización periódica que lleva datos desde Sage 300 a la
+        base de datos local. Sus parámetros son:
+      </p>
       <ul>
-        <li><strong>Intervalo de sincronización (segundos):</strong> valor por defecto <code>60</code>.</li>
-        <li><strong>Reintentos máximos por error:</strong> valor por defecto <code>1</code>.</li>
+        <li><strong>Intervalo (segundos):</strong> por defecto <code>60</code>. Define cada cuánto se ejecuta.</li>
+        <li><strong>Reintentos máximos por error:</strong> por defecto <code>1</code>.</li>
       </ul>
+
+      <div class="note tip">
+        <strong>Ajuste fino.</strong> Si trabajas con catálogos muy grandes,
+        un intervalo menor (p. ej. 30 s) reduce la latencia entre Sage 300 y
+        la base local. Si la red es lenta, conviene aumentarlo para evitar
+        colisiones.
+      </div>
 
       <h3>Importación Sage 50 → Sage 300</h3>
       <p>
-        Operación de una sola ejecución (no se repite automáticamente), con botón
-        <strong>Ejecutar importación S50 ahora</strong>.
+        Esta operación no es automática: se lanza bajo demanda desde el
+        botón <strong>Ejecutar importación S50 ahora</strong>. Es habitual
+        dispararla tras un cierre contable o un cambio masivo en Sage 50.
       </p>
 
-      <p>Los cambios se guardan con el botón <strong>Guardar configuración</strong>.</p>
+      <p>
+        Los cambios se guardan con el botón <strong>Guardar configuración</strong>.
+      </p>
 
       <figure>
         <img src="../assets/images/010.png" alt="Configuración de proceso">
-        <figcaption>Captura 2 · Configuración de proceso</figcaption>
+        <figcaption><strong>Captura 10</strong> · Configuración de proceso.</figcaption>
       </figure>
 
-      <blockquote class="info">
-        💡 <strong>Siguiente paso:</strong> Continúa con
-        <a href="catalogos.html">Carga de catálogos</a> para importar las cuentas desde Sage 300.
-      </blockquote>
+      <div class="note tip">
+        <strong>Siguiente paso.</strong> Con los intervalos definidos, es
+        momento de <a href="catalogos.html">cargar los catálogos</a>
+        desde Sage 300.
+      </div>
 
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Documentación de <strong>Sage Connect for 300</strong> · ACI ·
-        <a href="../index.html">← Volver al inicio</a>
-      </p>
+      <a href="../index.html" class="colophon">← Volver al índice</a>
+      <span>Sage Connect for 300 — ACI</span>
     </div>
   </footer>
 
