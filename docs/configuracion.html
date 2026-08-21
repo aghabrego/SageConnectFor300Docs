@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuración inicial — Sage Connect for 300</title>
+  <meta name="description" content="Escritorio principal y configuración de proceso de Sage Connect for 300.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">
+        📘 Sage Connect for 300
+        <span class="badge">v1.0.0</span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="instalacion.html">Instalación</a>
+        <a href="acceso.html">Acceso</a>
+        <a href="configuracion.html" class="active">Configuración</a>
+        <a href="catalogos.html">Catálogos</a>
+        <a href="avanzada.html">Avanzada</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <h1>⚙️ Configuración inicial</h1>
+      <p>
+        Las dos pantallas principales para comenzar a trabajar con Sage Connect for 300.
+      </p>
+
+      <h2>Escritorio</h2>
+      <p>
+        El <strong>Escritorio</strong> muestra el estado general del conector y permite la
+        ejecución manual de procesos. Contiene tres secciones principales:
+      </p>
+      <ul>
+        <li>
+          <strong>SageConnect for 300</strong> — Cabecera con el nombre del conector y la
+          descripción <em>"Conector de sincronización para Sage 300 ERP · ACI"</em>.
+        </li>
+        <li>
+          <strong>Estado del servicio</strong> — Servicio Windows en ejecución, fecha de la
+          última sincronización S300 y de la última importación S50.
+        </li>
+        <li>
+          <strong>Ejecución manual</strong> — Botones para ejecutar manualmente la
+          <em>Sincronización S300</em> (exporta módulos de Sage 300 hacia la BD local) y la
+          <em>Importación S50 → S300</em> (importa datos de Sage 50 hacia Sage 300).
+        </li>
+        <li>
+          <strong>Actividad reciente</strong> — Panel que muestra los logs recientes del sistema.
+        </li>
+      </ul>
+      <figure>
+        <img src="../assets/images/009.png" alt="Escritorio principal">
+        <figcaption>Captura 1 · Escritorio principal de SageConnect for 300</figcaption>
+      </figure>
+
+      <h2>Proceso</h2>
+      <p>
+        La sección <strong>Proceso</strong> permite configurar los intervalos y controlar
+        manualmente los procesos de sincronización:
+      </p>
+
+      <h3>Sincronización automática — Sage 300</h3>
+      <ul>
+        <li><strong>Intervalo de sincronización (segundos):</strong> valor por defecto <code>60</code>.</li>
+        <li><strong>Reintentos máximos por error:</strong> valor por defecto <code>1</code>.</li>
+      </ul>
+
+      <h3>Importación Sage 50 → Sage 300</h3>
+      <p>
+        Operación de una sola ejecución (no se repite automáticamente), con botón
+        <strong>Ejecutar importación S50 ahora</strong>.
+      </p>
+
+      <p>Los cambios se guardan con el botón <strong>Guardar configuración</strong>.</p>
+
+      <figure>
+        <img src="../assets/images/010.png" alt="Configuración de proceso">
+        <figcaption>Captura 2 · Configuración de proceso</figcaption>
+      </figure>
+
+      <blockquote class="info">
+        💡 <strong>Siguiente paso:</strong> Continúa con
+        <a href="catalogos.html">Carga de catálogos</a> para importar las cuentas desde Sage 300.
+      </blockquote>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Documentación de <strong>Sage Connect for 300</strong> · ACI ·
+        <a href="../index.html">← Volver al inicio</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
