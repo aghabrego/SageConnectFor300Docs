@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuración del Web Screen — Sage Connect for 300</title>
+  <meta name="description" content="Guía paso a paso para desplegar y configurar el Web API de Sage 300 que consume Sage Connect for 300.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">SC</span>
+        <span class="brand-name">Sage Connect for 300</span>
+        <span class="brand-tag">Manual técnico · v1.0</span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">Índice</a>
+        <a href="instalacion.html">Instalación</a>
+        <a href="acceso.html">Acceso</a>
+        <a href="configuracion.html">Configuración</a>
+        <a href="webscreen.html" class="active">Web Screen</a>
+        <a href="catalogos.html">Catálogos</a>
+        <a href="avanzada.html">Avanzada</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <div class="chapter-head">
+        <div class="crumb">Capítulo 04 · Web Screen</div>
+        <h1>Configuración del Web Screen paso a paso</h1>
+        <p class="dek">
+          Antes de ejecutar Sage Connect for 300 es indispensable contar con
+          el Web API de Sage 300 publicado en IIS. Esta guía recorre, paso a
+          paso, el despliegue local y la verificación del endpoint que utiliza
+          el conector.
+        </p>
+      </div>
+
+      <h2><span class="num">§ 01</span> ¿Qué es el Web Screen?</h2>
+      <p>
+        El <strong>Web API de Sage 300</strong> —conocido como
+        <em>Web Screen</em>— es el servicio HTTP publicado bajo IIS que expone
+        los datos del ERP (<code>customers</code>, <code>invoices</code>,
+        <code>accounts</code>, etc.) para ser consumidos por aplicaciones
+        externas. Sage Connect for 300 lo utiliza como <strong>origen de
+        datos</strong> durante la sincronización.
+      </p>
+      <p>
+        Su URL por defecto, una vez instalado, es:
+      </p>
+      <pre><code>http://localhost/Sage300WebApi/v1.0/&lt;compañia&gt;/&lt;módulo&gt;/&lt;recurso&gt;</code></pre>
+      <p>
+        Por ejemplo, una consulta de clientes en la compañía
+        <code>SAMLTD</code> se vería así:
+      </p>
+      <pre><code>GET http://localhost/Sage300WebApi/v1.0/SAMLTD/ar/customers</code></pre>
+
+      <h2><span class="num">§ 02</span> Prerrequisitos</h2>
+      <p>
+        Antes de instalar el Web API, asegúrate de contar con lo siguiente en
+        el equipo donde correrá:
+      </p>
+      <ul>
+        <li><strong>Windows 10 / 11</strong> o Windows Server 2016 o superior.</li>
+        <li><strong>IIS</strong> instalado y habilitado, con el rol
+            <em>Application Development</em> activado.</li>
+        <li><strong>.NET Framework 4.7.2</strong> o superior.</li>
+        <li><strong>Sage 300</strong> instalado y con al menos una compañía
+            configurada y operativa.</li>
+        <li><strong>SQL Server</strong> accesible y con las bases de datos de
+            Sage 300 registradas.</li>
+        <li>Una <strong>cuenta de Windows</strong> con permisos de
+            <code>db_datareader</code> y <code>db_datawriter</code> sobre las
+            bases de Sage 300 (o un usuario SQL equivalente).</li>
+        <li>El <strong>instalador del Web API de Sage 300</strong>, localizado
+            en los medios originales de instalación bajo la carpeta
+            <code>WebAPI</code>.</li>
+      </ul>
+
+      <div class="note tip">
+        <strong>Sugerencia.</strong> Si vas a publicar el API en un servidor
+        remoto, replica los mismos requisitos en ese equipo y abre el puerto
+        <strong>80/443</strong> en el firewall. Esta guía se enfoca en
+        <code>localhost</code>, que es el escenario típico de Sage Connect.
+      </div>
+
+      <h2><span class="num">§ 03</span> Instalar el Web API</h2>
+      <ol>
+        <li>Ejecuta el instalador <code>setup.exe</code> del componente Web API
+            desde los medios de Sage 300.</li>
+        <li>Acepta los términos de licencia y haz clic en <strong>Siguiente</strong>.</li>
+        <li>Selecciona el sitio IIS destino. El valor por defecto
+            (<strong>Default Web Site</strong>) es suficiente para
+            <code>localhost</code>.</li>
+        <li>Define la <strong>ruta virtual</strong> de la aplicación. Por
+            defecto es <code>Sage300WebApi</code>; consérvala para que coincida
+            con la URL esperada por Sage Connect for 300.</li>
+        <li>Completa el asistente. Al finalizar se habrán creado:
+            <ul>
+              <li>El <strong>Application Pool</strong>
+                  <code>Sage300AppPool</code>.</li>
+              <li>La <strong>aplicación virtual</strong>
+                  <code>Sage300WebApi</code> dentro de <em>Default Web Site</em>.</li>
+            </ul>
+        </li>
+      </ol>
+
+      <figure>
+        <img src="../assets/images/010-webscreen-install.png" alt="Asistente de instalación del Web API de Sage 300">
+        <figcaption><strong>Captura 10</strong> · Selección del sitio IIS durante la instalación del Web API.</figcaption>
+      </figure>
+
+      <h2><span class="num">§ 04</span> Configurar el Application Pool</h2>
+      <p>
+        El instalador crea el AppPool con la identidad
+        <em>ApplicationPoolIdentity</em>, que normalmente no tiene acceso a SQL
+        Server. Ajusta su identidad para que pueda leer las bases de Sage 300:
+      </p>
+      <ol>
+        <li>Abre el <strong>Administrador de IIS</strong>
+            (<code>inetmgr.exe</code>).</li>
+        <li>En el árbol izquierdo, selecciona <em>Application Pools</em>.</li>
+        <li>Selecciona <code>Sage300AppPool</code> y haz clic en
+            <strong>Advanced Settings…</strong>.</li>
+        <li>En la propiedad <strong>Identity</strong>, elige una cuenta que tenga
+            acceso a SQL Server (por ejemplo, <code>IIS AppPool\Sage300AppPool</code>
+            o una cuenta de dominio específica).</li>
+        <li>Haz clic en <strong>OK</strong> y reinicia el AppPool.</li>
+      </ol>
+
+      <figure>
+        <img src="../assets/images/011-webscreen-apppool.png" alt="Configuración de identidad del Application Pool">
+        <figcaption><strong>Captura 11</strong> · Identity del AppPool <code>Sage300AppPool</code>.</figcaption>
+      </figure>
+
+      <h2><span class="num">§ 05</span> Configurar credenciales y compañía</h2>
+      <p>
+        El Web API lee sus credenciales y la compañía por defecto desde un
+        archivo de configuración publicado por el instalador. Ubícalo dentro de
+        la carpeta de la aplicación virtual (típicamente
+        <code>%SystemDrive%\inetpub\wwwroot\Sage300WebApi</code>) y edítalo:
+      </p>
+
+      <pre><code>{
+  "Sage300": {
+    "Company": "SAMLTD",
+    "User":     "ADMIN",
+    "Password": "********",
+    "Language": "es"
+  },
+  "ConnectionStrings": {
+    "Default": "Server=TU_SERVIDOR;Database=SAMLTD;Trusted_Connection=True;"
+  }
+}</code></pre>
+
+      <ul>
+        <li><strong>Company</strong>: código de la compañía en Sage 300 (visible
+            en la barra de título al iniciar sesión).</li>
+        <li><strong>User</strong> / <strong>Password</strong>: usuario con
+            permisos para consultar los módulos que vas a sincronizar.</li>
+        <li><strong>ConnectionStrings.Default</strong>: cadena de conexión a
+            SQL Server apuntando a la base de la compañía.</li>
+      </ul>
+
+      <div class="note warn">
+        <strong>Precaución.</strong> En entornos productivos evita guardar la
+        contraseña en texto plano. Considera cifrar la sección o usar una
+        cuenta de servicio con autenticación integrada de Windows.
+      </div>
+
+      <h2><span class="num">§ 06</span> Probar el endpoint</h2>
+      <p>
+        Desde una terminal o el navegador, ejecuta una solicitud <em>GET</em>
+        contra un recurso básico. Una respuesta JSON confirma que el Web API
+        quedó correctamente publicado:
+      </p>
+
+      <pre><code>curl http://localhost/Sage300WebApi/v1.0/SAMLTD/ar/customers?limit=5</code></pre>
+
+      <h4>Resultados esperados</h4>
+      <table>
+        <thead>
+          <tr><th>Código</th><th>Significado</th><th>Acción recomendada</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>200 OK</code></td>
+            <td>El endpoint responde con datos JSON.</td>
+            <td>Continuar con el siguiente capítulo.</td>
+          </tr>
+          <tr>
+            <td><code>401 / 403</code></td>
+            <td>Credenciales rechazadas o permisos insuficientes.</td>
+            <td>Revisar usuario/contraseña y permisos del AppPool en SQL.</td>
+          </tr>
+          <tr>
+            <td><code>404</code></td>
+            <td>La ruta virtual no está registrada.</td>
+            <td>Verificar que la app <code>Sage300WebApi</code> exista en IIS.</td>
+          </tr>
+          <tr>
+            <td><code>500</code></td>
+            <td>Error interno del Web API.</td>
+            <td>Revisar el visor de eventos y los logs de IIS.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <figure>
+        <img src="../assets/images/012-webscreen-endpoint.png" alt="Prueba del endpoint en el navegador">
+        <figcaption><strong>Captura 12</strong> · Respuesta JSON del endpoint
+          <code>/ar/customers</code>.</figcaption>
+      </figure>
+
+      <h2><span class="num">§ 07</span> Conectar Sage Connect for 300</h2>
+      <p>
+        Una vez que el Web API responde en
+        <code>http://localhost/Sage300WebApi/v1.0</code>, configura el conector
+        para que apunte a esa misma URL. Edita el archivo
+        <code>appsettings.json</code> que reside junto al ejecutable del
+        Manager:
+      </p>
+
+      <pre><code>{
+  "Sage300": {
+    "BaseUrl":    "http://localhost/Sage300WebApi/v1.0",
+    "Company":    "SAMLTD",
+    "User":       "ADMIN",
+    "Password":   "********",
+    "Timeout":    60
+  }
+}</code></pre>
+
+      <p>
+        El campo <strong>BaseUrl</strong> debe coincidir exactamente con la ruta
+        publicada por IIS. Cualquier diferencia (mayúsculas, slash final,
+        protocolo) impedirá la sincronización.
+      </p>
+
+      <figure>
+        <img src="../assets/images/013-webscreen-prueba.png" alt="Prueba de conexión desde Sage Connect for 300">
+        <figcaption><strong>Captura 13</strong> · Sage Connect for 300 probando conexión contra el Web API.</figcaption>
+      </figure>
+
+      <h2><span class="num">§ 08</span> Errores frecuentes y solución</h2>
+
+      <h4>404 — La ruta no existe</h4>
+      <p>
+        Significa que el Web API no está publicado. Abre IIS y verifica que la
+        aplicación virtual <code>Sage300WebApi</code> esté presente bajo
+        <em>Default Web Site</em>.
+      </p>
+
+      <h4>401 / 403 — Acceso denegado</h4>
+      <p>
+        Revisa dos cosas: las credenciales en el archivo de configuración del
+        Web API y la identidad del <code>Sage300AppPool</code>. Esta última
+        debe tener acceso a SQL Server.
+      </p>
+
+      <h4>500 — Error interno</h4>
+      <p>
+        Consulta el <strong>Visor de eventos de Windows</strong> bajo
+        <em>Application</em> y los logs de IIS en
+        <code>%SystemDrive%\inetpub\logs\LogFiles</code>. Normalmente apunta a
+        una cadena de conexión mal formada o un módulo de Sage 300 no
+        licenciado.
+      </p>
+
+      <h4>Timeout al sincronizar</h4>
+      <p>
+        La primera carga de catálogos puede tardar varios minutos. Aumenta el
+        valor de <code>Sage300.Timeout</code> en <code>appsettings.json</code>
+        o espera a que la compañía termine su rutina de mantenimiento.
+      </p>
+
+      <div class="note tip">
+        <strong>Listo.</strong> Con el Web API respondiendo
+        <code>200 OK</code> y el <code>appsettings.json</code> apuntando a esa
+        misma URL, Sage Connect for 300 ya puede iniciar la primera
+        sincronización manual descrita en el capítulo de
+        <a href="configuracion.html">Configuración</a>.
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span class="colophon">Sage Connect for 300 — Manual técnico · ACI</span>
+      <span>Última revisión · agosto 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>
